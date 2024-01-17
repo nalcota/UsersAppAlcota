@@ -1,5 +1,7 @@
+import { useReducer } from "react";
 import { UserForm } from "./components/UserForm";
 import { UsersList } from "./components/UsersList";
+import { usersReducer } from "./reducers/usersReducer";
 
 
 const initialUsers = [
@@ -13,8 +15,13 @@ const initialUsers = [
 
 export const UsersApp = () => {
     
+    const [users, dispatch] = useReducer(usersReducer, initialUsers);
     const handlerAddUser = (user) => {
-        console.log(user)
+        //console.log(user)
+        dispatch({
+            type: 'addUser',
+            payload: user,
+        })
     }
     return (
         <div className="container my-4">
@@ -26,7 +33,7 @@ export const UsersApp = () => {
                 </div>
                 <div className="col">
                     <UsersList 
-                    users={initialUsers}/>
+                    users={users}/>
                 </div>
 
             </div>
