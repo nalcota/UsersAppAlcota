@@ -19,7 +19,7 @@ export const UsersList = ({ users = [] }) => {
                 </thead>
                 <tbody>
                     {
-                        users.map(id, username, email => (
+                        users.map(({id, username, email}) => (
                             <UserRow 
                             key={id} 
                             id={id} 
