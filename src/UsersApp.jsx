@@ -13,8 +13,14 @@ const initialUsers = [
     },
 ];
 
+const initialUserForm = {
+    username: '',
+    password: '',
+    email: '',
+}
+
 export const UsersApp = () => {
-    
+
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
     const handlerAddUser = (user) => {
         //console.log(user)
@@ -23,7 +29,7 @@ export const UsersApp = () => {
             payload: user,
         })
     }
-    
+
     const handlerRemoveUser = (id) => {
         //console.log(id)
         dispatch({
@@ -37,12 +43,18 @@ export const UsersApp = () => {
             <div className="row">
 
                 <div className="col">
-                    <UserForm handlerAddUser={handlerAddUser}/>
+                    <UserForm
+                        handlerAddUser={handlerAddUser}
+                        initialUserForm={initialUserForm} />
                 </div>
                 <div className="col">
-                    <UsersList 
-                    handlerRemoveUser={handlerRemoveUser}
-                    users={users}/>
+                    {users.length === 0 ?
+                        <div className="alert alert-warning"> No hay usuarios Registrados !</div>
+                        :
+                        <UsersList
+                            handlerRemoveUser={handlerRemoveUser}
+                            users={users} />}
+
                 </div>
 
             </div>
