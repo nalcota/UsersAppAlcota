@@ -1,4 +1,4 @@
-export const UserRow = ({handlerUserSelectedForm, handlerRemoveUser, id, username, email, password}) => {
+export const UserRow = ({handlerUserSelectedForm, handlerRemoveUser, id, username, email}) => {
 
     const onRemoveuser = (id) => {
         handlerRemoveUser(id);
@@ -16,7 +16,6 @@ export const UserRow = ({handlerUserSelectedForm, handlerRemoveUser, id, usernam
                         id,
                         username,
                         email,
-                        password
                     })}
                     >
                     update

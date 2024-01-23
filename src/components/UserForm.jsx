@@ -10,8 +10,8 @@ export const UserForm = ({userSelected, handlerAddUser, initialUserForm}) => {
     useEffect(() => {
         setUserForm({
             ...userSelected,
-            //password: '',
-        })
+            password: '',
+        }, [userSelected]);
 
     }, [userSelected])
 
@@ -26,7 +26,7 @@ export const UserForm = ({userSelected, handlerAddUser, initialUserForm}) => {
     }
     const onSubmit = (event) => {
         event.preventDefault();
-        if(!username || !password || !email ){
+        if(!username || (!password && id ==0) || !email ){
             alert('Debe completar los campos del formulario');
             return;
         }
@@ -45,13 +45,13 @@ export const UserForm = ({userSelected, handlerAddUser, initialUserForm}) => {
                 name="username" 
                 value={username}
                 onChange={ onInputChange}/>
-            <input
+                {id > 0 || <input
                 className="form-control my-3 w-75"
                 placeholder="Password"
                 type="password"
                 name="password" 
                 value={password}
-                onChange={ onInputChange}/>
+                onChange={ onInputChange}/>}
             <input
                 className="form-control my-3 w-75"
                 placeholder="Email"
