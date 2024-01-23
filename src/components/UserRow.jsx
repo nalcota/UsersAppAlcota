@@ -1,4 +1,4 @@
-export const UserRow = ({handlerRemoveUser, id, username, email}) => {
+export const UserRow = ({handlerUserSelectedForm, handlerRemoveUser, id, username, email, password}) => {
 
     const onRemoveuser = (id) => {
         handlerRemoveUser(id);
@@ -11,7 +11,14 @@ export const UserRow = ({handlerRemoveUser, id, username, email}) => {
             <td>
                 <button
                     type="button"
-                    className="btn btn-secondary btn-sm">
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => handlerUserSelectedForm({
+                        id,
+                        username,
+                        email,
+                        password
+                    })}
+                    >
                     update
 
                 </button>
