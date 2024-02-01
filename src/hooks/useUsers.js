@@ -22,37 +22,30 @@ export const useUsers = () => {
 
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
     const [userSelected, setUserSelected] = useState(initialUserForm);
+    const [visibleForm, setVisibleForm] = useState(false);
 
 
 
 
     const handlerAddUser = (user) => {
-        //console.log(user)
-        let type;
-
-        if (user.id === 0) {
-            type = 'addUser';
-        } else {
-            type = 'updateUser'
-        }
-
+        // console.log(user);
         dispatch({
-            type,
+            type: (user.id === 0) ? 'addUser' : 'updateUser',
             payload: user,
         });
 
-        Swal.fire({
-            title:
-                (user.id === 0) ?
-                    "Usuario Creado" :
-                    'Usuario Actualizado',
-            text:
-                (user.id === 0) ?
-                    "El usuario a sido creado con exito!" :
-                    'El usuario ha sido actualizado con exito',
-            icon: "success"
-        });
+        Swal.fire(
+            (user.id === 0) ?
+                'Usuario Creado' :
+                'Usuario Actualizado',
+            (user.id === 0) ?
+                'El usuario ha sido creado con exito!' :
+                'El usuario ha sido actualizado con exito!',
+            'success'
+        );
+        handlerCloseForm();
     }
+
 
     const handlerRemoveUser = (id) => {
         //console.log(id)
@@ -84,15 +77,27 @@ export const useUsers = () => {
     const handlerUserSelectedForm = (user) => {
         //console.log(user)
         setUserSelected({ ...user });
+        setVisibleForm(true);
+    }
+
+    const handlerOpenForm = () => {
+        setVisibleForm(true);
+    }
+    const handlerCloseForm = () => {
+        setVisibleForm(false);
+        setUserSelected(initialUserForm);
     }
     return {
         users,
         userSelected,
         initialUserForm,
+        visibleForm, 
 
         handlerAddUser,
         handlerRemoveUser,
-        handlerUserSelectedForm
+        handlerUserSelectedForm,
+        handlerOpenForm,
+        handlerCloseForm,
 
     }
 }
