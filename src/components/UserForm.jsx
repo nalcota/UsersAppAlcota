@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2";
 
-
 export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handlerCloseForm }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
@@ -12,58 +11,57 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
         setUserForm({
             ...userSelected,
             password: '',
-        }, [userSelected]);
-
-    }, [userSelected])
+        });
+    }, [userSelected]);
 
     const onInputChange = ({ target }) => {
-        //console.log(target.value)
+        // console.log(target.value)
         const { name, value } = target;
         setUserForm({
             ...userForm,
             [name]: value,
         })
-
     }
+
     const onSubmit = (event) => {
         event.preventDefault();
-        if (!username || (!password && id == 0) || !email) {
-
-            Swal.fire({
-                title: "Error de validación",
-                text: "Debe completar los capos del formulario",
-                icon: "error"
-            });
+        if (!username || (!password && id === 0) || !email) {
+            Swal.fire(
+                'Error de validacion',
+                'Debe completar los campos del formulario!',
+                'error'
+            );
 
             return;
         }
-        console.log(userForm);
+        // console.log(userForm);
 
-        //guardar userForm en el listado de usuarios
+        // guardar el user form en el listado de usuarios
         handlerAddUser(userForm);
-        setUserForm(initialUserForm)
+        setUserForm(initialUserForm);
     }
 
     const onCloseForm = () => {
         handlerCloseForm();
         setUserForm(initialUserForm);
     }
-
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={ onSubmit }>
             <input
                 className="form-control my-3 w-75"
                 placeholder="Username"
                 name="username"
-                value={username}
+                value={ username}
                 onChange={onInputChange} />
-            {id > 0 || <input
+            
+            { id > 0 || <input
                 className="form-control my-3 w-75"
                 placeholder="Password"
                 type="password"
                 name="password"
                 value={password}
-                onChange={onInputChange} />}
+                onChange={onInputChange} /> }
+            
             <input
                 className="form-control my-3 w-75"
                 placeholder="Email"
@@ -73,6 +71,7 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
             <input type="hidden"
                 name="id"
                 value={id} />
+            
             <button
                 className="btn btn-primary"
                 type="submit">
@@ -84,7 +83,6 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
                 onClick={() => onCloseForm()}>
                 Cerrar
             </button>
-
         </form>
     )
 }
