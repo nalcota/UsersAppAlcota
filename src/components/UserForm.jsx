@@ -46,22 +46,22 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
         setUserForm(initialUserForm);
     }
     return (
-        <form onSubmit={ onSubmit }>
+        <form onSubmit={onSubmit}>
             <input
                 className="form-control my-3 w-75"
                 placeholder="Username"
                 name="username"
-                value={ username}
+                value={username}
                 onChange={onInputChange} />
-            
-            { id > 0 || <input
+
+            {id > 0 || <input
                 className="form-control my-3 w-75"
                 placeholder="Password"
                 type="password"
                 name="password"
                 value={password}
-                onChange={onInputChange} /> }
-            
+                onChange={onInputChange} />}
+
             <input
                 className="form-control my-3 w-75"
                 placeholder="Email"
@@ -71,18 +71,19 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm, handle
             <input type="hidden"
                 name="id"
                 value={id} />
-            
+
             <button
                 className="btn btn-primary"
                 type="submit">
                 {id > 0 ? 'Editar' : 'Crear'}
             </button>
-            <button
+            {!handlerCloseForm || <button
                 className="btn btn-primary mx-2"
                 type="button"
                 onClick={() => onCloseForm()}>
                 Cerrar
-            </button>
+            </button>}
+
         </form>
     )
 }

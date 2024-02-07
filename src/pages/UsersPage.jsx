@@ -1,32 +1,30 @@
 import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
-import { useUsers } from "../hooks/useUsers";
 
 
-export const UsersPage = () => {
+export const UsersPage = ({
+    users,
+    userSelected,
+    initialUserForm,
+    visibleForm,
 
-    const {
-        users,
-        userSelected,
-        initialUserForm,
-        visibleForm,
+    handlerAddUser,
+    handlerRemoveUser,
+    handlerUserSelectedForm,
+    handlerCloseForm,
+    handlerOpenForm,
 
-        handlerAddUser,
-        handlerRemoveUser,
-        handlerUserSelectedForm,
-        handlerCloseForm,
-        handlerOpenForm,
+}) => {
 
-    } = useUsers();
 
     return (
         <>
             {!visibleForm ||
-                <UserModalForm 
-                userSelected={userSelected} 
-                initialUserForm={initialUserForm}
-                handlerAddUser={handlerAddUser}
-                handlerCloseForm={handlerCloseForm}
+                <UserModalForm
+                    userSelected={userSelected}
+                    initialUserForm={initialUserForm}
+                    handlerAddUser={handlerAddUser}
+                    handlerCloseForm={handlerCloseForm}
                 />
             }
             <div className="container my-4">
