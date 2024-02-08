@@ -1,7 +1,5 @@
 
 import { LoginPage } from './auth/pages/LoginPage';
-import { Navbar } from './components/layout/Navbar';
-import { UsersPage } from './pages/UsersPage';
 import { useAuth } from './auth/hooks/useAuth';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { UserRoutes } from './routes/UserRoutes';
