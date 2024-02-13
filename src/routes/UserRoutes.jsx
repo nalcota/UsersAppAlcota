@@ -5,7 +5,7 @@ import { RegisterPage } from "../pages/RegisterPage"
 import { useUsers } from "../hooks/useUsers"
 import { UserProvider } from "../context/UserProvider"
 
-export const UserRoutes = ({ login, handlerLogout }) => {
+export const UserRoutes = () => {
 
    
 
@@ -13,7 +13,7 @@ export const UserRoutes = ({ login, handlerLogout }) => {
         <>
 
             <UserProvider> 
-            <Navbar login={login} handlerLogout={handlerLogout} />
+            <Navbar />
             <Routes>
 
                 <Route path="users" element={<UsersPage/>} />
