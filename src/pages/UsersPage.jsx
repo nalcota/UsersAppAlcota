@@ -4,14 +4,11 @@ import { UsersList } from "../components/UsersList";
 import { UserContext } from "../context/UserContext";
 
 
-export const UsersPage = ({}) => {
+export const UsersPage = ({ }) => {
 
     const {
         users,
         visibleForm,
-    
-        handlerRemoveUser,
-        handlerUserSelectedForm,
         handlerOpenForm,
     } = useContext(UserContext);
 
@@ -19,7 +16,7 @@ export const UsersPage = ({}) => {
         <>
             {!visibleForm ||
                 <UserModalForm
-                    
+
                 />
             }
             <div className="container my-4">
@@ -37,10 +34,7 @@ export const UsersPage = ({}) => {
                         {users.length === 0 ?
                             <div className="alert alert-warning"> No hay usuarios Registrados !</div>
                             :
-                            <UsersList
-                                handlerUserSelectedForm={handlerUserSelectedForm}
-                                handlerRemoveUser={handlerRemoveUser}
-                                users={users} />}
+                            <UsersList />}
 
                     </div>
 
